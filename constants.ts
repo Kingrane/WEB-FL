@@ -66,6 +66,82 @@ export const DEFAULT_TRACKS: TrackData[] = [
       }
     ],
     effects: []
+  },
+  {
+    id: 'track-3',
+    name: 'Kick',
+    color: '#22c55e',
+    type: 'sampler',
+    synthType: 'sine',
+    sampleUrl: '/samples/kick.wav',
+    sampleName: 'kick.wav',
+    muted: false,
+    soloed: false,
+    volume: 0.9,
+    clips: [
+      {
+        id: 'clip-3',
+        trackId: 'track-3',
+        startStep: 0,
+        duration: 16,
+        baseDuration: 16,
+        notes: [
+          { id: 'n6', pitch: 'C2', startStep: 0, duration: 2 },
+          { id: 'n7', pitch: 'C2', startStep: 8, duration: 2 },
+        ]
+      }
+    ],
+    effects: []
+  },
+  {
+    id: 'track-4',
+    name: 'Snare',
+    color: '#f59e0b',
+    type: 'sampler',
+    synthType: 'sine',
+    sampleUrl: '/samples/snare.wav',
+    sampleName: 'snare.wav',
+    muted: false,
+    soloed: false,
+    volume: 0.8,
+    clips: [
+      {
+        id: 'clip-4',
+        trackId: 'track-4',
+        startStep: 4,
+        duration: 16,
+        baseDuration: 16,
+        notes: [
+          { id: 'n8', pitch: 'D2', startStep: 4, duration: 2 },
+        ]
+      }
+    ],
+    effects: []
+  },
+  {
+    id: 'track-5',
+    name: 'Reese Bass',
+    color: '#8b5cf6',
+    type: 'sampler',
+    synthType: 'sine',
+    sampleUrl: '/samples/reesebass.wav',
+    sampleName: 'reesebass.wav',
+    muted: false,
+    soloed: false,
+    volume: 0.7,
+    clips: [
+      {
+        id: 'clip-5',
+        trackId: 'track-5',
+        startStep: 0,
+        duration: 32,
+        baseDuration: 16,
+        notes: [
+          { id: 'n9', pitch: 'C2', startStep: 0, duration: 8 },
+        ]
+      }
+    ],
+    effects: []
   }
 ];
 

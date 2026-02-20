@@ -1,7 +1,3 @@
-<div align="center">
-  <img width="1200" height="475" alt="WEB-FL Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
 # WEB-FL 🎹
 
 A powerful web-based Digital Audio Workstation (DAW) built with React, TypeScript, and Tone.js. Create music directly in your browser with a familiar FL Studio-inspired interface.

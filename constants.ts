@@ -145,7 +145,15 @@ export const DEFAULT_TRACKS: TrackData[] = [
   }
 ];
 
-export const SYNTH_TYPES = ['sine', 'square', 'sawtooth', 'triangle', 'membrane', 'noise', 'metal'];
+export const SYNTH_TYPES = ['sine', 'square', 'sawtooth', 'triangle', 'membrane', 'noise', 'metal', 'kick', 'snare', 'cowbell', 'cowbell2', 'reese'];
+
+export const SAMPLE_URLS: Record<string, string> = {
+  kick: '/samples/kick.wav',
+  snare: '/samples/snare.wav',
+  cowbell: '/samples/cowbell.wav',
+  cowbell2: '/samples/cowbell2.wav',
+  reese: '/samples/reesebass.wav',
+};
 
 export const EFFECT_TYPES = ['reverb', 'delay', 'filter'] as const;
 

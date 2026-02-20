@@ -1,5 +1,6 @@
 import * as Tone from 'tone';
 import { TrackData, TrackEffect, ReverbEffect, DelayEffect, FilterEffect } from '../types';
+import { SAMPLE_URLS } from '../constants';
 
 class AudioEngine {
   private synths: Map<string, Tone.Synth | Tone.MembraneSynth | Tone.NoiseSynth | Tone.MetalSynth | Tone.Sampler> = new Map();
@@ -165,10 +166,9 @@ class AudioEngine {
   }
 
   private async createInstrument(track: TrackData): Promise<Tone.Synth | Tone.MembraneSynth | Tone.NoiseSynth | Tone.MetalSynth | Tone.Sampler> {
-    if (track.type === 'sampler') {
-      if (!track.sampleUrl) {
-         return new Tone.Synth(); 
-      }
+    const sampleUrl = SAMPLE_URLS[track.synthType] || track.sampleUrl;
+    
+    if (sampleUrl) {
       return new Promise((resolve) => {
         let isResolved = false;
         const complete = (inst: any) => {
@@ -179,7 +179,7 @@ class AudioEngine {
         };
 
         const sampler = new Tone.Sampler({
-          urls: { C4: track.sampleUrl! },
+          urls: { C4: sampleUrl },
           onload: () => complete(sampler),
           onerror: (err) => {
              console.error("Sampler error, falling back to Synth:", err);

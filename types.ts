@@ -1,4 +1,4 @@
-export type SynthWaveform = 'sine' | 'square' | 'sawtooth' | 'triangle' | 'membrane' | 'noise' | 'metal';
+export type SynthWaveform = 'sine' | 'square' | 'sawtooth' | 'triangle' | 'membrane' | 'noise' | 'metal' | 'kick' | 'snare' | 'cowbell' | 'cowbell2' | 'reese';
 export type TrackType = 'synth' | 'sampler';
 
 export interface EffectData {

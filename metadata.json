@@ -1,0 +1,5 @@
+{
+  "name": "WebDAW Pro",
+  "description": "A professional, minimalist Digital Audio Workstation inspired by FL Studio, built with React and Tone.js.",
+  "requestFramePermissions": []
+}

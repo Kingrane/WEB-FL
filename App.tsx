@@ -156,7 +156,7 @@ export default function App() {
     }
     
     try {
-      const blob = await audioEngine.exportToAudio(30);
+      const blob = await audioEngine.exportToAudio(state.loopEndStep);
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

@@ -315,12 +315,34 @@ class AudioEngine {
     }
   }
 
-  public async exportToAudio(durationSeconds: number = 30): Promise<Blob> {
+  public async exportToAudio(loopEndStep: number | null = null): Promise<Blob> {
     await this.initialize();
+    
+    let maxDuration = 30;
+    
+    for (const [trackId, events] of this.trackEvents) {
+      if (events && events.length > 0) {
+        for (const event of events) {
+          const eventEnd = event.time + event.duration;
+          if (eventEnd > maxDuration) {
+            maxDuration = eventEnd;
+          }
+        }
+      }
+    }
+    
+    if (loopEndStep) {
+      const loopEndTime = loopEndStep * Tone.Time("16n").toSeconds();
+      if (loopEndTime > maxDuration) {
+        maxDuration = loopEndTime;
+      }
+    }
+    
+    maxDuration = Math.min(maxDuration + 2, 120);
     
     const sampleRate = 44100;
     const numChannels = 2;
-    const length = Math.ceil(durationSeconds * sampleRate);
+    const length = Math.ceil(maxDuration * sampleRate);
     
     const offlineContext = new OfflineAudioContext(numChannels, length, sampleRate);
     const masterGain = offlineContext.createGain();
@@ -328,11 +350,14 @@ class AudioEngine {
     masterGain.connect(offlineContext.destination);
     
     for (const [trackId, events] of this.trackEvents) {
-      const synth = this.synths.get(trackId);
-      const vol = this.volumes.get(trackId);
-      if (!synth || !events) continue;
+      if (!events || events.length === 0) continue;
+      
+      const state = this.instrumentStates.get(trackId);
+      if (!state) continue;
       
       for (const event of events) {
+        if (event.time >= maxDuration) continue;
+        
         try {
           const osc = offlineContext.createOscillator();
           const gainNode = offlineContext.createGain();
@@ -342,7 +367,7 @@ class AudioEngine {
           osc.type = this.getOscillatorType(trackId);
           
           const startTime = event.time;
-          const duration = Math.max(0.01, event.duration);
+          const duration = Math.min(0.01, event.duration, maxDuration - startTime);
           
           gainNode.gain.setValueAtTime(0.25, startTime);
           gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration);

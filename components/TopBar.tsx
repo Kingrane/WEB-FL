@@ -59,7 +59,7 @@ export const TopBar: React.FC<TopBarProps> = ({
             <Layers size={16} className="text-white" />
           </div>
           <span className="font-sans font-semibold text-sm tracking-widest uppercase text-white hidden sm:block">
-            Operations <span className="text-[#1a44ff]">DAW</span>
+            WEB-FL
           </span>
         </div>
 

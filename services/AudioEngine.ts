@@ -167,6 +167,7 @@ class AudioEngine {
 
   private async createInstrument(track: TrackData): Promise<Tone.Synth | Tone.MembraneSynth | Tone.NoiseSynth | Tone.MetalSynth | Tone.Sampler> {
     const sampleUrl = SAMPLE_URLS[track.synthType] || track.sampleUrl;
+    const resolvedSampleUrl = sampleUrl || null;
     
     if (sampleUrl) {
       return new Promise((resolve) => {
@@ -225,13 +226,15 @@ class AudioEngine {
         if (synth) synth.dispose();
         synth = await this.createInstrument(track);
         
+        const resolvedSampleUrl = SAMPLE_URLS[track.synthType] || track.sampleUrl;
+        
         const vol = new Tone.Volume(this.linearToDecibels(track.volume)).connect(this.masterChannel);
         
         this.buildEffectChain(track, synth as Tone.ToneAudioNode, vol);
         
         this.synths.set(track.id, synth);
         this.volumes.set(track.id, vol);
-        this.instrumentStates.set(track.id, { type: track.type, synthType: track.synthType, sampleUrl: track.sampleUrl });
+        this.instrumentStates.set(track.id, { type: track.type, synthType: track.synthType, sampleUrl: resolvedSampleUrl });
         this.effectStates.set(track.id, [...track.effects]);
       } else {
         const vol = this.volumes.get(track.id);
@@ -367,7 +370,7 @@ class AudioEngine {
           osc.type = this.getOscillatorType(trackId);
           
           const startTime = event.time;
-          const duration = Math.min(0.01, event.duration, maxDuration - startTime);
+          const duration = Math.min(event.duration, maxDuration - startTime);
           
           gainNode.gain.setValueAtTime(0.25, startTime);
           gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration);

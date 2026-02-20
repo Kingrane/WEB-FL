@@ -73,7 +73,7 @@ export const DEFAULT_TRACKS: TrackData[] = [
     color: '#22c55e',
     type: 'sampler',
     synthType: 'sine',
-    sampleUrl: '/samples/kick.wav',
+    sampleUrl: '/kick.wav',
     sampleName: 'kick.wav',
     muted: false,
     soloed: false,
@@ -99,7 +99,7 @@ export const DEFAULT_TRACKS: TrackData[] = [
     color: '#f59e0b',
     type: 'sampler',
     synthType: 'sine',
-    sampleUrl: '/samples/snare.wav',
+    sampleUrl: '/snare.wav',
     sampleName: 'snare.wav',
     muted: false,
     soloed: false,
@@ -124,7 +124,7 @@ export const DEFAULT_TRACKS: TrackData[] = [
     color: '#8b5cf6',
     type: 'sampler',
     synthType: 'sine',
-    sampleUrl: '/samples/reesebass.wav',
+    sampleUrl: '/reesebass.wav',
     sampleName: 'reesebass.wav',
     muted: false,
     soloed: false,
@@ -148,11 +148,11 @@ export const DEFAULT_TRACKS: TrackData[] = [
 export const SYNTH_TYPES = ['sine', 'square', 'sawtooth', 'triangle', 'membrane', 'noise', 'metal', 'kick', 'snare', 'cowbell', 'cowbell2', 'reese'];
 
 export const SAMPLE_URLS: Record<string, string> = {
-  kick: '/samples/kick.wav',
-  snare: '/samples/snare.wav',
-  cowbell: '/samples/cowbell.wav',
-  cowbell2: '/samples/cowbell2.wav',
-  reese: '/samples/reesebass.wav',
+  kick: '/kick.wav',
+  snare: '/snare.wav',
+  cowbell: '/cowbell.wav',
+  cowbell2: '/cowbell2.wav',
+  reese: '/reesebass.wav',
 };
 
 export const EFFECT_TYPES = ['reverb', 'delay', 'filter'] as const;
